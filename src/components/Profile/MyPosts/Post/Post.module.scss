@@ -1,0 +1,31 @@
+.post {
+  border-radius: 5px;
+  background-color: beige;
+  display: flex;
+  gap: 10px;
+  &__img {
+    padding: 2px;
+    width: 50px;
+    max-height: 50px;
+  }
+  &__message {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+  }
+  &__leftborder {
+    width: 3px;
+    height: 90%;    
+    background-color: grey;
+  }
+  &__like {
+    align-self: flex-end;
+    margin-left: auto;
+    span {
+      color: rgb(106, 151, 15);
+      text-shadow: 2px 2px 4px goldenrod;
+    }
+  }
+}
