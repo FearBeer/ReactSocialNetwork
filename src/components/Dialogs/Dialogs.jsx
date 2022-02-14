@@ -1,23 +1,33 @@
 import React from "react";
-import styles from "./Dialogs.module.scss"
+import styles from "./Dialogs.module.scss";
+import Dialog from "./Dialog/Dialog";
+import Message from "./Message/Message";
 
 const Dialogs = (props) => {
+
+    let newMessage = React.createRef();
+    
+    let addMessageHere = () => {        
+        props.addMessage();            
+    };
+
+    let inputNewMessage = () => {
+        let text = newMessage.current.value;
+        props.updateNewMessageText(text);
+    };
+
     return (
         <div className={styles.dialogs}>
-            
+
             <div className={styles.dialogs__dialog}>
-                <div className={styles.dialogs__user}>Rus</div>
-                <div className={styles.dialogs__user}>Lina</div>
-                <div className={styles.dialogs__user}>Vova</div>
-                <div className={styles.dialogs__user}>Someone</div>
+                {props.state.dialogsData.map(dialog => <Dialog name={dialog.name} id={dialog.id} />)}
             </div>
             <div className={styles.dialogs__messages}>
-                <div className={styles.dialogs__message}>Hi</div>
-                <div className={styles.dialogs__message}>Hello</div>
-                <div className={styles.dialogs__message}>How are you</div>
-                <div className={styles.dialogs__message}>Ok</div>
-                <div className={styles.dialogs__message}>OK!</div>
+                {props.state.messagesData.map(message => <Message text={message.text}/>)}
             </div>
+
+            <textarea ref={newMessage} value={props.state.newMessageText} onChange={inputNewMessage}></textarea>
+            <button onClick={addMessageHere}>ADD MESSAGE</button>
 
         </div>
 

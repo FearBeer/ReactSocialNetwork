@@ -1,8 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./Nav.module.scss";
+import Sidebar from "./Sidebar/Sidebar";
 
-const Nav = () => {
+const Nav = (props) => {
     const activeLink = () => {
         return nav => nav.isActive ? `${styles.nav__link} ${styles.active}` : styles.nav__link
     };
@@ -21,9 +22,15 @@ const Nav = () => {
             <div>
                 <NavLink to="/music" className={activeLink()}>Music</NavLink>
             </div>
+
             <div>
                 <NavLink to="/settings" className={activeLink()}>Settings</NavLink>
-            </div>            
+            </div>
+
+            <h4 className={styles.title}>Friends</h4>
+            <div className={styles.nav__friends}>
+                {props.state.friendList.map(friend => <Sidebar name={friend.name} avatar={friend.avatarSrc} />)}
+            </div>
         </nav>
     )
 };

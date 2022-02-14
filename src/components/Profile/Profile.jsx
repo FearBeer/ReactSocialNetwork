@@ -1,12 +1,18 @@
 import React from "react";
 import MyPosts from "./MyPosts/MyPosts";
 import styles from "./Profile.module.scss"
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-const Profile = () => {
+const Profile = (props) => {
+    
+
     return (
-        <div>
-            <img className={styles.profile__img} src="https://proprikol.ru/wp-content/uploads/2020/12/reki-krasivye-kartinki-35.jpg" alt="usersback" />
-            <MyPosts />
+        <div className={styles.profile}>
+            <ProfileInfo />
+            <MyPosts postsData={props.state.postsData} 
+                    newPostText={props.state.newPostText}
+                    updateNewPostText={props.updateNewPostText}
+                    addPost={props.addPost}/>
         </div>
     )
 };
