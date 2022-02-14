@@ -1,7 +1,7 @@
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
+  Route,  
 } from "react-router-dom";
 import './App.scss';
 import Header from './components/Header/Header';
@@ -13,23 +13,23 @@ import Settings from './components/Settings/Settings';
 import Dialogs from './components/Dialogs/Dialogs';
 
 function App(props) {
-
+  
   return (
     <Router>
       <div className="app">
         <Header />
-        <Nav state={props.state.sidebar} />
+        <Nav state={props.state.sidebar}/>
         <div className="app__content">
           <Routes>
             <Route path='/profile/' element={<Profile state={props.state.profilePage}
-                                            dispatch={props.dispatch} />}
-            />
+                                             addPost={props.addPost}
+                                             updateNewPostText={props.updateNewPostText}/>} />
             <Route path='/dialogs/' element={<Dialogs state={props.state.messagesPage}
-                                            dispatch={props.dispatch} />} 
-            />
+                                              addMessage={props.addMessage}
+                                              updateNewMessageText={props.updateNewMessageText}/>} />
             <Route path='/news/' element={<News />} />
             <Route path='/music/' element={<Music />} />
-            <Route path='/settings/' element={<Settings />} />
+            <Route path='/settings/' element={<Settings />} />                      
           </Routes>
         </div>
       </div>
