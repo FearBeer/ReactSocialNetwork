@@ -1,18 +1,18 @@
 import React from "react";
 import styles from "./MyPosts.module.scss"
 import Post from "./Post/Post";
+import {addPostCreator, updateNewPostTextCreator} from '../../../redux/state';
+
 
 const MyPosts = (props) => {
 
-    let newPostElement = React.createRef();
-
     let addPostHere = () => {
-        props.dispatch({type: 'ADD-POST'});        
+        props.dispatch(addPostCreator());        
     };
 
-    let changeText = () => {
-        let text = newPostElement.current.value;
-        props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text})
+    let changeText = (event) => {
+        let text = event.target.value;
+        props.dispatch(updateNewPostTextCreator(text));
         
     } 
 
@@ -22,7 +22,7 @@ const MyPosts = (props) => {
 
             <h3>My posts</h3>
             <div>
-                <textarea ref={newPostElement} onChange={changeText} value={props.newPostText}></textarea>
+                <textarea onChange={changeText} value={props.newPostText}></textarea>
             </div>
             <div>
                 <button onClick={addPostHere}>Add post</button>

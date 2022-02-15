@@ -2,18 +2,19 @@ import React from "react";
 import styles from "./Dialogs.module.scss";
 import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
+import {addMessageCreator, updateNewMessageTextCreator} from '../../redux/state';
 
 const Dialogs = (props) => {
 
-    let newMessage = React.createRef();
+    // let newMessage = React.createRef();
     
     let addMessageHere = () => {        
-        props.dispatch({type: 'ADD-MESSAGE'});            
+        props.dispatch(addMessageCreator());            
     };
 
-    let inputNewMessage = () => {
-        let text = newMessage.current.value;
-        props.dispatch({type: 'UPDATE-NEW-MESSAGE-TEXT', newText: text}); 
+    let inputNewMessage = (event) => {
+        let text = event.target.value;
+        props.dispatch(updateNewMessageTextCreator(text)); 
     };
 
     return (
@@ -26,7 +27,7 @@ const Dialogs = (props) => {
                 {props.state.messagesData.map(message => <Message text={message.text}/>)}
             </div>
 
-            <textarea ref={newMessage} value={props.state.newMessageText} onChange={inputNewMessage}></textarea>
+            <textarea value={props.state.newMessageText} onChange={inputNewMessage}></textarea>
             <button onClick={addMessageHere}>ADD MESSAGE</button>
 
         </div>
