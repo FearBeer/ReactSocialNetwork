@@ -1,18 +1,18 @@
 import React from "react";
 import styles from "./MyPosts.module.scss"
 import Post from "./Post/Post";
-import {addPostCreator, updateNewPostTextCreator} from '../../../redux/state';
+
 
 
 const MyPosts = (props) => {
 
     let addPostHere = () => {
-        props.dispatch(addPostCreator());        
+        props.addPost();        
     };
 
     let changeText = (event) => {
         let text = event.target.value;
-        props.dispatch(updateNewPostTextCreator(text));
+        props.updateNewPost(text);
         
     } 
 
@@ -22,13 +22,13 @@ const MyPosts = (props) => {
 
             <h3>My posts</h3>
             <div>
-                <textarea onChange={changeText} value={props.newPostText}></textarea>
+                <textarea onChange={changeText} value={props.profilePage.newPostText}></textarea>
             </div>
             <div>
                 <button onClick={addPostHere}>Add post</button>
             </div>
 
-            {props.postsData.map(post => <Post message={post.text} likes={post.likesCount}/>)}
+            {props.profilePage.postsData.map(post => <Post message={post.text} likes={post.likesCount}/>)}
             
         </div>
     )
