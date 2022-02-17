@@ -10,26 +10,33 @@ let initialState = {
     newPostText: 'по умолчанию',
 }
 
-export const addPostCreator = () => ({type: ADD_POST});
-export const updateNewPostTextCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text});
+export const addPostCreator = () => ({ type: ADD_POST });
+export const updateNewPostTextCreator = (text) => ({ type: UPDATE_NEW_POST_TEXT, newText: text });
 
-const profileReducer = (state=initialState, action) => {
+const profileReducer = (state = initialState, action) => {
 
-    switch(action.type) {
-        case ADD_POST: 
-            let newPost = {
-                id: 5,
-                text: state.newPostText,
-                likesCount: 0,
-            }
+    switch (action.type) {
+        case ADD_POST:
 
-            state.postsData.push(newPost);
-            state.newPostText = '';
-        return state;
+            return {
+                ...state,
+                postsData: [
+                    ...state.postsData,
+                    {
+                        id: 5,
+                        text: state.newPostText,
+                        likesCount: 0,
+                    }
+                ],
+                newPostText: '',
+            };
 
-        case UPDATE_NEW_POST_TEXT: state.newPostText = action.newText;
-        return state;
-
+        case UPDATE_NEW_POST_TEXT:
+            return {
+                ...state,
+                newPostText: action.newText,
+            };
+            
         default: return state;
     }
 

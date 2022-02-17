@@ -10,9 +10,9 @@ const MyPosts = (props) => {
         props.addPost();        
     };
 
-    let changeText = (event) => {
+    let changeTextHere = (event) => {
         let text = event.target.value;
-        props.updateNewPost(text);
+        props.changeText(text);
         
     } 
 
@@ -22,13 +22,13 @@ const MyPosts = (props) => {
 
             <h3>My posts</h3>
             <div>
-                <textarea onChange={changeText} value={props.profilePage.newPostText}></textarea>
+                <textarea onChange={changeTextHere} value={props.profilePage.newPostText}></textarea>
             </div>
             <div>
                 <button onClick={addPostHere}>Add post</button>
             </div>
 
-            {props.profilePage.postsData.map(post => <Post message={post.text} likes={post.likesCount}/>)}
+            {props.profilePage.postsData.map(post => <Post key={post.id} message={post.text} likes={post.likesCount}/>)}
             
         </div>
     )

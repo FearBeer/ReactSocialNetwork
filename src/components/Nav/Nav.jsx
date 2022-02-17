@@ -7,8 +7,6 @@ const Nav = (props) => {
     const activeLink = () => {
         return nav => nav.isActive ? `${styles.nav__link} ${styles.active}` : styles.nav__link
     };
-    
-    let state = props.store.getState();
 
     return (
         <nav className={styles.nav}>
@@ -31,7 +29,7 @@ const Nav = (props) => {
 
             <h4 className={styles.title}>Friends</h4>
             <div className={styles.nav__friends}>
-                {state.sidebar.friendList.map(friend => <Sidebar name={friend.name} avatar={friend.avatarSrc} />)}
+                {props.sidebar.friendList.map(friend => <Sidebar key={friend.id} name={friend.name} avatar={friend.avatarSrc} />)}
             </div>
         </nav>
     )

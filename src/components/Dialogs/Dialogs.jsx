@@ -11,7 +11,7 @@ const Dialogs = (props) => {
 
     let inputNewMessageHere = (event) => {
         let text = event.target.value;
-        props.updateNewMessageText(text); 
+        props.inputNewMessage(text); 
     };
 
 
@@ -19,10 +19,10 @@ const Dialogs = (props) => {
         <div className={styles.dialogs}>
 
             <div className={styles.dialogs__dialog}>
-                {props.messagesPage.dialogsData.map(dialog => <Dialog name={dialog.name} id={dialog.id} />)}
+                {props.messagesPage.dialogsData.map(dialog => <Dialog  key={dialog.id} name={dialog.name} id={dialog.id} />)}
             </div>
             <div className={styles.dialogs__messages}>
-                {props.messagesPage.messagesData.map(message => <Message text={message.text}/>)}
+                {props.messagesPage.messagesData.map(message => <Message key={message.id} text={message.text}/>)}
             </div>
 
             <textarea value={props.messagesPage.newMessageText} onChange={inputNewMessageHere}></textarea>
